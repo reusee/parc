@@ -53,11 +53,11 @@ func (g *Grammar) Match(input []byte) bool {
 			case slotNonTerminal:
 				slot := thread.slot.Slot
 				if slot == nil {
-					slot = g.slots[thread.slot.Name]
+					slot = g.slots[thread.slot.Symbol]
 					thread.slot.Slot = slot
 				}
 				if slot == nil {
-					panic("non-exists Non-terminal " + thread.slot.Name)
+					panic("non-exists Non-terminal " + thread.slot.Symbol)
 				}
 				thread.stack = append(thread.stack, stackEntry{
 					slot:  thread.slot.Continue,

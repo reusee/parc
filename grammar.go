@@ -10,7 +10,7 @@ type MatchFunc func([]byte) (int, bool)
 type grammarSlot struct {
 	Type      slotType
 	Alts      []*grammarSlot // for alternation
-	Name      string         // for non-terminal
+	Symbol    string         // for non-terminal
 	Slot      *grammarSlot   // for non-terminal
 	Continue  *grammarSlot
 	MatchFunc MatchFunc // for terminal

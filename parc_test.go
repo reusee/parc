@@ -11,13 +11,13 @@ func TestMatch(t *testing.T) {
 				Type: slotAlt,
 				Alts: []*grammarSlot{
 					&grammarSlot{
-						Id:   "S1",
-						Type: slotNonTerminal,
-						Name: "A",
+						Id:     "S1",
+						Type:   slotNonTerminal,
+						Symbol: "A",
 						Continue: &grammarSlot{
-							Id:   "S2",
-							Type: slotNonTerminal,
-							Name: "S",
+							Id:     "S2",
+							Type:   slotNonTerminal,
+							Symbol: "S",
 							Continue: &grammarSlot{
 								Id:        "S3",
 								Type:      slotTerminal,
@@ -30,13 +30,13 @@ func TestMatch(t *testing.T) {
 						},
 					},
 					&grammarSlot{
-						Id:   "S5",
-						Type: slotNonTerminal,
-						Name: "B",
+						Id:     "S5",
+						Type:   slotNonTerminal,
+						Symbol: "B",
 						Continue: &grammarSlot{
-							Id:   "S6",
-							Type: slotNonTerminal,
-							Name: "S",
+							Id:     "S6",
+							Type:   slotNonTerminal,
+							Symbol: "S",
 							Continue: &grammarSlot{
 								Id:   "S7",
 								Type: slotReturn,
