@@ -1,5 +1,6 @@
 # parc
 parser combinator for golang
+###### work in progress
 
 # references
 * Scott, Elizabeth, and Adrian Johnstone. "GLL parsing." Electronic Notes in Theoretical Computer Science 253.7 (2010): 177-189.
