@@ -1,18 +1,18 @@
 package parc
 
 type Grammar struct {
-	slots map[string]*grammarSlot
+	slots map[string]*GrammarSlot
 	start string
 }
 
 type MatchFunc func([]byte) (int, bool)
 
-type grammarSlot struct {
+type GrammarSlot struct {
 	Type      slotType
-	Alts      []*grammarSlot // for alternation
+	Alts      []*GrammarSlot // for alternation
 	Symbol    string         // for non-terminal
-	Slot      *grammarSlot   // for non-terminal
-	Continue  *grammarSlot
+	Slot      *GrammarSlot   // for non-terminal
+	Continue  *GrammarSlot
 	MatchFunc MatchFunc // for terminal
 	Name      string    // for debug
 }
@@ -30,10 +30,10 @@ const (
 func NewGrammar(startSymbol string) *Grammar {
 	return &Grammar{
 		start: startSymbol,
-		slots: make(map[string]*grammarSlot),
+		slots: make(map[string]*GrammarSlot),
 	}
 }
 
-func (g *Grammar) Rule(symbol string, slot *grammarSlot) {
+func (g *Grammar) Rule(symbol string, slot *GrammarSlot) {
 	g.slots[symbol] = slot
 }

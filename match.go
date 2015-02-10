@@ -1,11 +1,11 @@
 package parc
 
 type stackEntry struct {
-	slot  *grammarSlot
+	slot  *GrammarSlot
 	index int
 }
 type _Thread struct {
-	slot  *grammarSlot
+	slot  *GrammarSlot
 	index int
 	stack []stackEntry
 }
@@ -27,7 +27,7 @@ func (g *Grammar) Match(input []byte) bool {
 	threads := []_Thread{
 		{g.slots[g.start], 0, []stackEntry{
 			stackEntry{
-				slot: &grammarSlot{
+				slot: &GrammarSlot{
 					Type: slotFinish,
 					Name: "Finish",
 				}}}},
