@@ -25,7 +25,7 @@ func dumpThreads(threads []_Thread) {
 
 func (g *Grammar) Match(input []byte) bool {
 	threads := []_Thread{
-		{g.slots[g.Start], 0, []stackEntry{
+		{g.slots[g.start], 0, []stackEntry{
 			stackEntry{
 				slot: &grammarSlot{
 					Type: slotFinish,

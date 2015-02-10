@@ -2,7 +2,7 @@ package parc
 
 type Grammar struct {
 	slots map[string]*grammarSlot
-	Start string
+	start string
 }
 
 type MatchFunc func([]byte) (int, bool)
@@ -26,3 +26,14 @@ const (
 	slotReturn
 	slotFinish
 )
+
+func NewGrammar(startSymbol string) *Grammar {
+	return &Grammar{
+		start: startSymbol,
+		slots: make(map[string]*grammarSlot),
+	}
+}
+
+func (g *Grammar) Rule(symbol string, slot *grammarSlot) {
+	g.slots[symbol] = slot
+}

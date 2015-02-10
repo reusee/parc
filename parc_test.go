@@ -3,25 +3,21 @@ package parc
 import "testing"
 
 func TestMatch(t *testing.T) {
-	grammar := &Grammar{
-		Start: "S",
-		slots: map[string]*grammarSlot{
-			"S": Alt(
-				Seq(
-					Named("S1", N("A")),
-					Named("S2", N("S")),
-					Named("S3", T(ByteEq('d'))),
-				),
-				Seq(
-					Named("S5", N("B")),
-					Named("S6", N("S")),
-				),
-				Seq(),
-			),
-			"A": Named("S9", T(ByteIn([]byte{'a', 'c'}))),
-			"B": Named("Sb", T(ByteIn([]byte{'a', 'b'}))),
-		},
-	}
+	grammar := NewGrammar("S")
+	grammar.Rule("S", Named("S", Alt(
+		Named("Sa", Seq(
+			Named("S1", N("A")),
+			Named("S2", N("S")),
+			Named("S3", T(ByteEq('d'))),
+		)),
+		Named("Sb", Seq(
+			Named("S4", N("B")),
+			Named("S5", N("S")),
+		)),
+		Named("Sc", Seq()),
+	)))
+	grammar.Rule("A", Named("A", T(ByteIn([]byte{'a', 'c'}))))
+	grammar.Rule("B", Named("B", T(ByteIn([]byte{'a', 'b'}))))
 
 	for _, input := range []string{
 		"",
@@ -51,6 +47,7 @@ func TestMatch(t *testing.T) {
 		"babad",
 		"baabd",
 		"babbd",
+		"foo",
 	} {
 		if !grammar.Match([]byte(input)) {
 			debug = true
