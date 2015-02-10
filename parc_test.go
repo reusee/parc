@@ -19,9 +19,9 @@ func TestMatch(t *testing.T) {
 							Type: slotNonTerminal,
 							Name: "S",
 							Continue: &grammarSlot{
-								Id:      "S3",
-								Type:    slotTerminal,
-								Predict: ByteEq('d'),
+								Id:        "S3",
+								Type:      slotTerminal,
+								MatchFunc: ByteEq('d'),
 								Continue: &grammarSlot{
 									Id:   "S4",
 									Type: slotReturn,
@@ -50,18 +50,18 @@ func TestMatch(t *testing.T) {
 				},
 			},
 			"A": &grammarSlot{
-				Id:      "S9",
-				Type:    slotTerminal,
-				Predict: ByteIn([]byte{'a', 'c'}),
+				Id:        "S9",
+				Type:      slotTerminal,
+				MatchFunc: ByteIn([]byte{'a', 'c'}),
 				Continue: &grammarSlot{
 					Id:   "Sa",
 					Type: slotReturn,
 				},
 			},
 			"B": &grammarSlot{
-				Id:      "Sb",
-				Type:    slotTerminal,
-				Predict: ByteIn([]byte{'a', 'b'}),
+				Id:        "Sb",
+				Type:      slotTerminal,
+				MatchFunc: ByteIn([]byte{'a', 'b'}),
 				Continue: &grammarSlot{
 					Id:   "Sc",
 					Type: slotReturn,

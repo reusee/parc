@@ -71,7 +71,7 @@ func (g *Grammar) Match(input []byte) bool {
 				thread.slot = entry.slot
 				newThreads = append(newThreads, thread)
 			case slotTerminal:
-				if n, ok := thread.slot.Predict(input[thread.index:]); ok {
+				if n, ok := thread.slot.MatchFunc(input[thread.index:]); ok {
 					thread.index += n
 					thread.slot = thread.slot.Continue
 					newThreads = append(newThreads, thread)

@@ -5,16 +5,16 @@ type Grammar struct {
 	Start string
 }
 
-type Predict func([]byte) (int, bool)
+type MatchFunc func([]byte) (int, bool)
 
 type grammarSlot struct {
-	Type     slotType
-	Alts     []*grammarSlot // for alternation
-	Name     string         // for non-terminal
-	Slot     *grammarSlot   // for non-terminal
-	Continue *grammarSlot
-	Predict  Predict // for terminal
-	Id       string  // for debug
+	Type      slotType
+	Alts      []*grammarSlot // for alternation
+	Name      string         // for non-terminal
+	Slot      *grammarSlot   // for non-terminal
+	Continue  *grammarSlot
+	MatchFunc MatchFunc // for terminal
+	Id        string    // for debug
 }
 
 type slotType int
