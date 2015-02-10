@@ -14,7 +14,7 @@ type grammarSlot struct {
 	Slot      *grammarSlot   // for non-terminal
 	Continue  *grammarSlot
 	MatchFunc MatchFunc // for terminal
-	Id        string    // for debug
+	Name      string    // for debug
 }
 
 type slotType int

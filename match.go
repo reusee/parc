@@ -15,10 +15,10 @@ var debug = false
 func dumpThreads(threads []_Thread) {
 	pt("--- threads ---\n")
 	for _, thread := range threads {
-		pt("%s %d\n", thread.slot.Id, thread.index)
+		pt("%s %d\n", thread.slot.Name, thread.index)
 		for i := len(thread.stack) - 1; i >= 0; i-- {
 			e := thread.stack[i]
-			pt("\t%v %d\n", e.slot.Id, e.index)
+			pt("\t%v %d\n", e.slot.Name, e.index)
 		}
 	}
 }
@@ -29,7 +29,7 @@ func (g *Grammar) Match(input []byte) bool {
 			stackEntry{
 				slot: &grammarSlot{
 					Type: slotFinish,
-					Id:   "Finish",
+					Name: "Finish",
 				}}}},
 	}
 	var newThreads []_Thread

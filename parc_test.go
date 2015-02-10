@@ -7,63 +7,63 @@ func TestMatch(t *testing.T) {
 		Start: "S",
 		slots: map[string]*grammarSlot{
 			"S": &grammarSlot{
-				Id:   "S",
+				Name: "S",
 				Type: slotAlt,
 				Alts: []*grammarSlot{
 					&grammarSlot{
-						Id:     "S1",
+						Name:   "S1",
 						Type:   slotNonTerminal,
 						Symbol: "A",
 						Continue: &grammarSlot{
-							Id:     "S2",
+							Name:   "S2",
 							Type:   slotNonTerminal,
 							Symbol: "S",
 							Continue: &grammarSlot{
-								Id:        "S3",
+								Name:      "S3",
 								Type:      slotTerminal,
 								MatchFunc: ByteEq('d'),
 								Continue: &grammarSlot{
-									Id:   "S4",
+									Name: "S4",
 									Type: slotReturn,
 								},
 							},
 						},
 					},
 					&grammarSlot{
-						Id:     "S5",
+						Name:   "S5",
 						Type:   slotNonTerminal,
 						Symbol: "B",
 						Continue: &grammarSlot{
-							Id:     "S6",
+							Name:   "S6",
 							Type:   slotNonTerminal,
 							Symbol: "S",
 							Continue: &grammarSlot{
-								Id:   "S7",
+								Name: "S7",
 								Type: slotReturn,
 							},
 						},
 					},
 					&grammarSlot{
-						Id:   "S8",
+						Name: "S8",
 						Type: slotReturn,
 					},
 				},
 			},
 			"A": &grammarSlot{
-				Id:        "S9",
+				Name:      "S9",
 				Type:      slotTerminal,
 				MatchFunc: ByteIn([]byte{'a', 'c'}),
 				Continue: &grammarSlot{
-					Id:   "Sa",
+					Name: "Sa",
 					Type: slotReturn,
 				},
 			},
 			"B": &grammarSlot{
-				Id:        "Sb",
+				Name:      "Sb",
 				Type:      slotTerminal,
 				MatchFunc: ByteIn([]byte{'a', 'b'}),
 				Continue: &grammarSlot{
-					Id:   "Sc",
+					Name: "Sc",
 					Type: slotReturn,
 				},
 			},
