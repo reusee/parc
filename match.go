@@ -19,7 +19,11 @@ func dumpThreads(threads []_Thread) {
 	for _, thread := range threads {
 		pt("%s %d\n", thread.slot.Name, thread.index)
 		for e := thread.stackTop; e != nil; e = e.parent {
-			pt("\t%v %d\n", e.slot.Name, e.index)
+			id := e.slot.Name
+			if len(id) == 0 {
+				id = e.slot.Type.String()
+			}
+			pt("\t%v %d\n", id, e.index)
 		}
 	}
 }
