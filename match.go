@@ -73,6 +73,7 @@ func (g *Grammar) Match(input []byte) bool {
 				if slot == nil {
 					panic("non-exists Non-terminal " + thread.slot.Symbol)
 				}
+				// push
 				thread.stackTop = &stackNode{
 					slot:   thread.slot.Continue,
 					index:  thread.index,
@@ -81,6 +82,7 @@ func (g *Grammar) Match(input []byte) bool {
 				thread.slot = slot
 				addThread(thread)
 			case slotReturn:
+				// pop
 				node := thread.stackTop
 				thread.stackTop = node.parent
 				thread.slot = node.slot
