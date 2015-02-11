@@ -47,7 +47,6 @@ func TestMatch(t *testing.T) {
 		"babad",
 		"baabd",
 		"babbd",
-		"foo",
 	} {
 		if !grammar.Match([]byte(input)) {
 			debug = true
