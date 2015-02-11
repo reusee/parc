@@ -41,7 +41,14 @@ func (g *Grammar) Match(input []byte) bool {
 			index:    0,
 			stackTop: bottomNode,
 		}}
-	var newThreads []_Thread
+	newThreads := []_Thread{}
+	uniqueThreads := make(map[_Thread]struct{})
+	addThread := func(thread _Thread) {
+		if _, ok := uniqueThreads[thread]; !ok {
+			uniqueThreads[thread] = struct{}{}
+			newThreads = append(newThreads, thread)
+		}
+	}
 	for len(threads) > 0 {
 		if debug {
 			dumpThreads(threads)
@@ -51,7 +58,7 @@ func (g *Grammar) Match(input []byte) bool {
 			switch thread.slot.Type {
 			case slotAlt:
 				for _, alt := range thread.slot.Alts {
-					newThreads = append(newThreads, _Thread{
+					addThread(_Thread{
 						slot:     alt,
 						index:    thread.index,
 						stackTop: thread.stackTop,
@@ -72,17 +79,17 @@ func (g *Grammar) Match(input []byte) bool {
 					parent: thread.stackTop,
 				}
 				thread.slot = slot
-				newThreads = append(newThreads, thread)
+				addThread(thread)
 			case slotReturn:
 				node := thread.stackTop
 				thread.stackTop = node.parent
 				thread.slot = node.slot
-				newThreads = append(newThreads, thread)
+				addThread(thread)
 			case slotTerminal:
 				if n, ok := thread.slot.MatchFunc(input[thread.index:]); ok {
 					thread.index += n
 					thread.slot = thread.slot.Continue
-					newThreads = append(newThreads, thread)
+					addThread(thread)
 				}
 			case slotFinish:
 				if thread.index == len(input) {
